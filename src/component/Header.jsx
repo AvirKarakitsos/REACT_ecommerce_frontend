@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
+import CartLength from '../features/cart/CartLength';
 
 const HeaderSection = styled.header`
     height: 50px;
@@ -9,11 +10,21 @@ const HeaderSection = styled.header`
     align-items: center;
 `
 
+const Basket = styled.section`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+`
+
 function Header() {
     return (
         <HeaderSection>
             <p>Header Part</p>
-            <FontAwesomeIcon icon="fa-solid fa-basket-shopping" />
+            <Basket>
+                <CartLength/>
+                <FontAwesomeIcon icon="fa-solid fa-basket-shopping" />
+            </Basket>
         </HeaderSection>
     )
 }

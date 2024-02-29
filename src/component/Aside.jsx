@@ -1,6 +1,10 @@
+import CartList from "../features/cart/CartList.jsx"
+
 function Aside() {
     return (
-        <div>Aside Part</div>
+        <>
+            <CartList/>
+        </>
     )
 }
 

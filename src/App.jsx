@@ -5,6 +5,9 @@ import Header from './component/Header.jsx';
 import Aside from './component/Aside.jsx';
 import Article from './component/Article.jsx';
 import styled from 'styled-components';
+import { Provider } from 'react-redux';
+import { store } from './app/store.js';
+
 
 const Grid = styled.div`
   padding: 50px 0;
@@ -24,13 +27,15 @@ function App() {
 
   else return (
     <>
-    <Header/>
-    <Aside/>
-    <main>
-      <Grid>
-        {data.products.map((item) => <Article key={item._id} product={item}/> )}
-      </Grid>
-    </main>
+    <Provider store={store}>
+      <Header/>
+      <Aside/>
+      <main>
+        <Grid>
+          {data.products.map((item) => <Article key={item._id} product={item}/> )}
+        </Grid>
+      </main>
+    </Provider>
     </>)
 
 }
