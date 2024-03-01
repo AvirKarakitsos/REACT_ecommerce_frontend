@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 import CartLength from '../features/cart/CartLength';
+import CartTotal from '../features/cart/CartTotal';
 
 const HeaderSection = styled.header`
     height: 50px;
@@ -24,6 +25,7 @@ function Header() {
             <Basket>
                 <CartLength/>
                 <FontAwesomeIcon icon="fa-solid fa-basket-shopping" />
+                <CartTotal/>
             </Basket>
         </HeaderSection>
     )

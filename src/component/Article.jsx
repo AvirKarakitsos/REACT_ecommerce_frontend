@@ -1,4 +1,6 @@
+import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components"
+import { addProduct, getAllCart } from "../features/cart/cartSlice"
 
 const ArticleComponent = styled.article`
     width: 100%;
@@ -18,6 +20,17 @@ const SectionFlexbox = styled.section`
 `
 
 function Article({product}) {
+    const dispatch = useDispatch()
+    const quantity = useSelector(getAllCart)
+
+    function handleProduct() {
+        dispatch(addProduct({
+            id: product._id,
+            name: product.name,
+            unity: product.unity
+        }))
+    }
+
     return (
         <ArticleComponent>
             <img src="https://placehold.co/300"/>
@@ -25,7 +38,8 @@ function Article({product}) {
                 <h2>{product.name}</h2> 
                 <p><span>{(product.unity/100).toFixed(2)}€</span></p>
             </SectionFlexbox>
-            <button>Ajouter au panier</button>
+            <div>{quantity[product.id]}</div>
+            <button onClick={handleProduct}>Ajouter au panier</button>
         </ArticleComponent>
     )
 }
