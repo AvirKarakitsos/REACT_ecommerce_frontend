@@ -1,14 +1,8 @@
 import { useSelector } from "react-redux"
 import { getAllCart } from "./cartSlice"
-import { useEffect } from "react"
-
 
 function CartList() {
     const list = useSelector(getAllCart)
-
-    useEffect(()=> {
-        console.log(list)
-    },[list])
 
     return (
         <div>
