@@ -4,15 +4,15 @@ import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache, from } from '@ap
 import {onError} from '@apollo/client/link/error'
 
 import { Provider } from 'react-redux';
-import { store } from './app/store.js';
+import { store } from './store.js';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faBasketShopping } from '@fortawesome/free-solid-svg-icons';
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Home from './pages/Home.jsx';
-import Summary from './pages/Summary.jsx';
-import Error from './pages/Error.jsx';
+import Home from '../pages/Home.jsx';
+import Summary from '../pages/Summary.jsx';
+import Error from '../pages/Error.jsx';
 
 library.add(faBasketShopping);
 
