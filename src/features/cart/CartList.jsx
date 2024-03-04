@@ -6,11 +6,12 @@ function CartList() {
 
     return (
         <div>
-            <p>Liste des produits dans votre panier</p>
-            <ul>{!list.length 
-                ? <li>Votre panier est vide</li>
-                : list.map(product => <li key={product.id}>{product.name}<span>{product.quantity}</span></li> )}
-            </ul>
+            {!list.length 
+                ? <p>Votre panier est vide</p>
+                : <>
+                    <p>Liste des produits dans votre panier</p>
+                    <ul>{list.map(product => <li key={product.id}>{product.name}<span>{product.quantity}</span></li> )}</ul>
+                </>}
         </div>
     )
 }

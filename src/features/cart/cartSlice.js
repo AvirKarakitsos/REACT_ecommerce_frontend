@@ -21,6 +21,10 @@ const cartSlice = createSlice({
             
             if(state[index].quantity === 1) state.splice(index,1)
             else state[index].quantity = state[index].quantity - 1
+        },
+        emptyCart(state) {
+            let cartLength = state.length
+            state.splice(0,cartLength)
         }
     }
 })
@@ -47,6 +51,6 @@ export const cartTotal = (state) => {
     return result
 }
 
-export const { addProduct, deleteProduct } = cartSlice.actions
+export const { addProduct, deleteProduct, emptyCart } = cartSlice.actions
 
 export default cartSlice.reducer

@@ -1,44 +1,62 @@
 import './App.css'
-import { useQuery } from '@apollo/client'
-import { PRODUCTS } from './graphql/Queries.js'
-import Header from './component/Header.jsx';
-import Aside from './component/Aside.jsx';
-import Article from './component/Article.jsx';
-import styled from 'styled-components';
+
+import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache, from } from '@apollo/client'
+import {onError} from '@apollo/client/link/error'
+
 import { Provider } from 'react-redux';
 import { store } from './app/store.js';
-import { useState } from 'react';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faBasketShopping } from '@fortawesome/free-solid-svg-icons';
+
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import Home from './pages/Home.jsx';
+import Summary from './pages/Summary.jsx';
+import Error from './pages/Error.jsx';
+
+library.add(faBasketShopping);
 
 
-const Grid = styled.div`
-  padding: 50px 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: center;
-  gap: 20px;
-`
+const errorLink = onError(({graphQLErrors}) => {
+  if(graphQLErrors) {
+    graphQLErrors.map(({message}) => alert(`Error GraphQL: ${message}`))
+  }
+})
+
+const link = from([
+  errorLink,
+  new HttpLink({ uri: "http://localhost:3000/graphql"})
+])
+
+const client = new ApolloClient({
+  cache:  new InMemoryCache(),
+  link: link
+})
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home/>,
+  },
+  {
+    path: '/summary',
+    element: <Summary/>
+  },
+  {
+    path: '*',
+    element: <Error/>
+  }
+])
 
 function App() {
-  const {error, loading, data} = useQuery(PRODUCTS)
-  const [isOpen, setIsOpen] = useState(false)
 
-
-  if (loading) return "Loading...";
-
-  if (error) return `Error! ${error.message}`;
-
-  else return (
-    <>
-    <Provider store={store}>
-      <Header setIsOpen={setIsOpen}/>
-      <Aside isOpen={isOpen}/>
-      <main>
-        <Grid>
-          {data.products.map((item) => <Article key={item._id} product={item}/> )}
-        </Grid>
-      </main>
-    </Provider>
-    </>)
+  return (
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </ApolloProvider>
+  )
 
 }
 
