@@ -18,13 +18,13 @@ const Basket = styled.section`
     column-gap: 5px;
 `
 
-function Header() {
+function Header({setIsOpen}) {
     return (
         <HeaderSection>
             <p>Header Part</p>
             <Basket>
                 <CartLength/>
-                <FontAwesomeIcon icon="fa-solid fa-basket-shopping" />
+                <FontAwesomeIcon icon="fa-solid fa-basket-shopping" onClick={() => setIsOpen(value =>!value)}/>
                 <CartTotal/>
             </Basket>
         </HeaderSection>

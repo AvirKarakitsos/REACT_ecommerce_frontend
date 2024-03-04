@@ -22,7 +22,7 @@ const SectionFlexbox = styled.section`
 function Article({product}) {
     return (
         <ArticleComponent>
-            <img src="https://placehold.co/300"/>
+            <img height={300} width={300} src="https://placehold.co/300"/>
             <SectionFlexbox>
                 <h2>{product.name}</h2> 
                 <p><span>{(product.unity/100).toFixed(2)}€</span></p>

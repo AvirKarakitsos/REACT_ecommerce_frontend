@@ -7,6 +7,7 @@ import Article from './component/Article.jsx';
 import styled from 'styled-components';
 import { Provider } from 'react-redux';
 import { store } from './app/store.js';
+import { useState } from 'react';
 
 
 const Grid = styled.div`
@@ -19,6 +20,7 @@ const Grid = styled.div`
 
 function App() {
   const {error, loading, data} = useQuery(PRODUCTS)
+  const [isOpen, setIsOpen] = useState(false)
 
 
   if (loading) return "Loading...";
@@ -28,8 +30,8 @@ function App() {
   else return (
     <>
     <Provider store={store}>
-      <Header/>
-      <Aside/>
+      <Header setIsOpen={setIsOpen}/>
+      <Aside isOpen={isOpen}/>
       <main>
         <Grid>
           {data.products.map((item) => <Article key={item._id} product={item}/> )}

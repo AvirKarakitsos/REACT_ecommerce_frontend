@@ -5,7 +5,7 @@ function CartTotal() {
     const total = useSelector(cartTotal)
 
     return (
-        <div>{total !== 0 ? `${(total/100).toFixed(2)}€` : null}</div>
+        <span>{total !== 0 ? `${(total/100).toFixed(2)}€` : null}</span>
     )
 }
 
