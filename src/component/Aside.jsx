@@ -30,7 +30,7 @@ function Aside({isOpen}) {
                 <CartTotal/>
                 {counter !== 0 && <button onClick={() => dispatch(emptyCart())}>Vider le panier</button>}
             </div>
-            {counter !== 0 && <button><Link to="/summary">Valider le panier</Link></button>}
+            {counter !== 0 && <button><Link to="/cart">Valider le panier</Link></button>}
         </AsideComponent>
     )
 }

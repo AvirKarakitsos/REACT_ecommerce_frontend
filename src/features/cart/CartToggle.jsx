@@ -4,16 +4,16 @@ import { useDispatch, useSelector } from "react-redux"
 function CartToggle({product}) {
     const dispatch = useDispatch()
     const list = useSelector(getAllCart)
-    const filterProduct = list.filter(item => item.id === product._id)
+    const filterProduct = list.filter(item => item.productId === product._id)
 
 
     function deleteOneProduct() {
-        dispatch(deleteProduct({ id: product._id }))
+        dispatch(deleteProduct({ productId: product._id }))
     }
 
     function addOneProduct() {
         dispatch(addProduct({
-            id: product._id,
+            productId: product._id,
             name: product.name,
             unity: product.unity
         }))

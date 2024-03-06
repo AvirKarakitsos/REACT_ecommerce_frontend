@@ -12,12 +12,12 @@ function CartList() {
     const dispatch = useDispatch()
 
     function deleteOneProduct(productId) {
-        dispatch(deleteProduct({ id: productId}))
+        dispatch(deleteProduct({ productId }))
     }
 
     function addOneProduct(item) {
         dispatch(addProduct({
-            id: item.id,
+            productId: item.productId,
             name: item.name,
             unity: item.unity
         }))
@@ -30,11 +30,11 @@ function CartList() {
                 : <>
                     <p>Votre panier</p>
                     <ul>{list.map(product => (
-                        <ListElement key={product.id}>
+                        <ListElement key={product.productId}>
                             <span>{product.name}</span>
                             <span>{(product.unity/100).toFixed(2)}€</span>
                             <div>
-                                <button onClick={() => deleteOneProduct(product.id)}>-</button>
+                                <button onClick={() => deleteOneProduct(product.productId)}>-</button>
                                 <span>{product.quantity}</span>
                                 <button onClick={() => addOneProduct(product)}>+</button>
                             </div>

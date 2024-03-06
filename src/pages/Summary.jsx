@@ -2,10 +2,25 @@ import { Link } from "react-router-dom"
 import CartList from "../features/cart/CartList"
 import CartTotal from "../features/cart/CartTotal"
 import { useSelector } from "react-redux"
-import { cartLength } from "../features/cart/cartSlice"
+import { cartLength, getAllCart } from "../features/cart/cartSlice"
+import { useMutation } from "@apollo/client"
+import { ADD_PRODUCTS } from "../graphql/Mutations"
+
 
 function Summary() {
     const count = useSelector(cartLength)
+    const list = useSelector(getAllCart)
+   
+    const [addProduct] = useMutation(
+        ADD_PRODUCTS, 
+        {
+            variables: {order: list },
+            onCompleted: (data) => {
+                console.log(data.validOrder.url);
+                window.location.href = data.validOrder.url
+            }
+        }
+    )
 
     return (
         <main>
@@ -14,7 +29,7 @@ function Summary() {
             <div>
                 <span>Total:</span><CartTotal/>
             </div>
-            {count !== 0 && <button>Paiement du panier</button>}
+            {count !== 0 && <button onClick={addProduct}>Paiement du panier</button>}
             <button><Link to='/'>Retour</Link></button>
         </main>
     )
