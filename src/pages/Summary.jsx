@@ -16,7 +16,6 @@ function Summary() {
         {
             variables: {order: list },
             onCompleted: (data) => {
-                console.log(data.validOrder.url);
                 window.location.href = data.validOrder.url
             }
         }

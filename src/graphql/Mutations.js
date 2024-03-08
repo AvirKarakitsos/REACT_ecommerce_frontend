@@ -7,3 +7,11 @@ export const ADD_PRODUCTS = gql`
         }
     }
 `
+
+export const LOGIN = gql`
+    mutation postLogin($user: LoginInput) {
+        loginUser(user: $user) {
+            token
+        }
+    }
+`
