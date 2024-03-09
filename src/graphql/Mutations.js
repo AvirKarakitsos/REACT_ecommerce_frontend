@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const ADD_PRODUCTS = gql`
-    mutation postProducts($order: [AddOrderInput!]!) {
+    mutation postProducts($order: [OrderInput!]!) {
         validOrder(order: $order) {
             url
         }

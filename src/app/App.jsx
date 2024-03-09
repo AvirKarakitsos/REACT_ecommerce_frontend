@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { store } from './store.js';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBasketShopping, faEye } from '@fortawesome/free-solid-svg-icons';
+import { faBasketShopping, faEye, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from '../pages/Home.jsx';
@@ -15,7 +15,7 @@ import Summary from '../pages/Summary.jsx';
 import Error from '../pages/Error.jsx';
 import Login from '../pages/Login.jsx';
 
-library.add(faBasketShopping, faEye);
+library.add(faBasketShopping, faEye, faUser);
 
 
 const errorLink = onError(({graphQLErrors}) => {

@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import { LOGIN } from "../graphql/Mutations.js"
+import { useNavigate } from "react-router-dom"
 
 function Login() {
     const [credentials, setCrendentials] = useState({
@@ -15,11 +16,8 @@ function Login() {
     })
     const [showPassword, setShowPassword] = useState(false)
     const [loginUser] = useMutation(LOGIN)
+    const navigate = useNavigate()
     
-    const handleMouseMove = () => {
-        if(showPassword) setShowPassword(false)
-    }
-
     const onChange = function(e) {
         e.preventDefault()
         setCrendentials({
@@ -27,7 +25,6 @@ function Login() {
             [e.target.name]: e.target.value
         })
     }
-
 
     const handleSubmit = async function(e) {
         try {
@@ -59,6 +56,7 @@ function Login() {
                         email: "",
                         password: ""
                     })
+                    navigate("/")
                 }
             }
 
@@ -73,16 +71,15 @@ function Login() {
                 <fieldset>
                     <legend>Se connecter</legend>
                     <label htmlFor="email">
-                        <input type="text" name="email" id="email" value={credentials.email} onChange={onChange} autoComplete="off" placeholder="Email"/>
+                        <input type="email" name="email" id="email" value={credentials.email} onChange={onChange} autoComplete="off" placeholder="Email"/>
                     </label>
                     <label htmlFor="password" className="password">
                         <input type="password" name="password" id="password" value={credentials.password} onChange={onChange} autoComplete="off" placeholder="Mot de passe" />
                         <FontAwesomeIcon 
-                            icon="fa-solid fa-eye" 
-                            onMouseDown={() => setShowPassword(true)}
-                            onMouseUp={() => setShowPassword(false)}
-                            onMouseMove={handleMouseMove}/>
-                        {showPassword && <p className="showPassword">{credentials.password}</p>}
+                            icon="fa-solid fa-eye"
+                            className={showPassword ? "colorBlack" : "colorGrey"}
+                            onClick={() => setShowPassword((value) => !value)}/>
+                        {showPassword && <input className="showPassword" type="text" name="password" id="password" value={credentials.password} onChange={onChange} autoComplete="off" placeholder="Mot de passe" />}
                     </label>
                     {!isValid.display && <p>{isValid.message}</p>}
                     <button className="validButton" type="submit">Valider</button>
