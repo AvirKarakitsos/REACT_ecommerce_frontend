@@ -9,3 +9,26 @@ export const PRODUCTS = gql`
         }
     }
 `
+
+export const USER = gql`
+    query getUser{
+        user {
+            name
+            email
+            address
+            orders {
+                _id
+                totalPrice
+                createdAt
+                products {
+                    _id
+                    product {
+                        name
+                        unity
+                    }
+                    quantity
+                }
+            }
+        }
+    }
+`

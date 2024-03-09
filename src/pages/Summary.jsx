@@ -5,7 +5,20 @@ import { useSelector } from "react-redux"
 import { cartLength, getAllCart } from "../features/cart/cartSlice"
 import { useMutation } from "@apollo/client"
 import { ADD_PRODUCTS } from "../graphql/Mutations"
+import Header from "../component/Header"
+import styled from "styled-components"
 
+const MainContainer = styled.main`
+    max-width: 500px;
+    width:100%;
+    margin: 0 auto;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border 1px solid black;
+`
 
 function Summary() {
     const count = useSelector(cartLength)
@@ -34,15 +47,17 @@ function Summary() {
     )
 
     return (
-        <main>
-            <h1>Summary Page</h1>
-            <CartList/>
-            <div>
-                <span>Total:</span><CartTotal/>
-            </div>
-            {count !== 0 && <button onClick={addProduct}>Paiement du panier</button>}
-            <button><Link to='/'>Retour</Link></button>
-        </main>
+        <>
+            <Header/>
+            <MainContainer>
+                <CartList/>
+                <div>
+                    <span>Total:</span><CartTotal/>
+                </div>
+                {count !== 0 && <button className="validButton" onClick={addProduct}>Paiement du panier</button>}
+                <button><Link to='/'>Retour</Link></button>
+            </MainContainer>
+        </>
     )
 }
 

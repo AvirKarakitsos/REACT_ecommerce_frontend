@@ -7,6 +7,10 @@ const ListElement = styled.li`
     justify-content: space-between;
 `
 
+const BasketContainer = styled.div`
+    width:100%;
+`
+
 function CartList() {
     const list = useSelector(getAllCart)
     const dispatch = useDispatch()
@@ -24,7 +28,7 @@ function CartList() {
     }
 
     return (
-        <div>
+        <BasketContainer>
             {!list.length 
                 ? <p>Votre panier est vide</p>
                 : <>
@@ -41,7 +45,7 @@ function CartList() {
                         </ListElement>) )}
                     </ul>
                 </>}
-        </div>
+        </BasketContainer>
     )
 }
 

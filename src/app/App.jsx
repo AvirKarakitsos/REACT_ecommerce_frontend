@@ -14,6 +14,7 @@ import Home from '../pages/Home.jsx';
 import Summary from '../pages/Summary.jsx';
 import Error from '../pages/Error.jsx';
 import Login from '../pages/Login.jsx';
+import Account from '../pages/Account.jsx';
 
 library.add(faBasketShopping, faEye, faUser);
 
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path:'/login',
     element: <Login/>
+  },
+  {
+    path:'/account',
+    element: <Account/>
   },
   {
     path: '*',
