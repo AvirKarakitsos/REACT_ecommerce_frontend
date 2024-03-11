@@ -17,6 +17,7 @@ const MainContainer = styled.main`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    row-gap: 25px;
     border 1px solid black;
 `
 
@@ -55,7 +56,7 @@ function Summary() {
                     <span>Total:</span><CartTotal/>
                 </div>
                 {count !== 0 && <button className="validButton" onClick={addProduct}>Paiement du panier</button>}
-                <button><Link to='/'>Retour</Link></button>
+                <button className="toggleButton"><Link className="noLink" to='/'>Retour</Link></button>
             </MainContainer>
         </>
     )

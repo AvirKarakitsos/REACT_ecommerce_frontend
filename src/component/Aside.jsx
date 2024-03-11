@@ -14,6 +14,7 @@ const AsideComponent = styled.aside`
     flex-direction: column;
     row-gap: 50px;
     background-color: white;
+    border: 2px solid black;
 `
 
 
@@ -28,9 +29,9 @@ function Aside({isOpen}) {
             <div>
                 <span>Total:</span>
                 <CartTotal/>
-                {counter !== 0 && <button onClick={() => dispatch(emptyCart())}>Vider le panier</button>}
+                {counter !== 0 && <button className="toggleButton" onClick={() => dispatch(emptyCart())}>Vider le panier</button>}
             </div>
-            {counter !== 0 && <button><Link to="/cart">Valider le panier</Link></button>}
+            {counter !== 0 && <button className="validButton"><Link className="noLink" to="/cart">Valider le panier</Link></button>}
         </AsideComponent>
     )
 }

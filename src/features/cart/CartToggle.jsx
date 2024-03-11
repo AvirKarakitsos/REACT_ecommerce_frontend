@@ -22,11 +22,11 @@ function CartToggle({product}) {
     return (
         filterProduct.length !== 0
             ? <div>
-                <button onClick={deleteOneProduct}>-</button>
+                <button className="toggleButton" onClick={deleteOneProduct}>-</button>
                 <span>{filterProduct[0].quantity}</span>
-                <button onClick={addOneProduct}>+</button>
+                <button className="toggleButton" onClick={addOneProduct}>+</button>
             </div>
-            : <button onClick={addOneProduct}>Ajouter au panier</button>
+            : <button className="validButton" onClick={addOneProduct}>Ajouter au panier</button>
     )
 }
 

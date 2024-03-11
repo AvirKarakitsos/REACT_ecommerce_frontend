@@ -3,6 +3,7 @@ import { addProduct, deleteProduct, getAllCart } from "./cartSlice"
 import styled from "styled-components"
 
 const ListElement = styled.li`
+    margin: 5px 0;
     display: flex;
     justify-content: space-between;
 `
@@ -38,9 +39,9 @@ function CartList() {
                             <span>{product.name}</span>
                             <span>{(product.unity/100).toFixed(2)}€</span>
                             <div>
-                                <button onClick={() => deleteOneProduct(product.productId)}>-</button>
+                                <button className="toggleButton" onClick={() => deleteOneProduct(product.productId)}>-</button>
                                 <span>{product.quantity}</span>
-                                <button onClick={() => addOneProduct(product)}>+</button>
+                                <button className="toggleButton" onClick={() => addOneProduct(product)}>+</button>
                             </div>
                         </ListElement>) )}
                     </ul>
