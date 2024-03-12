@@ -1,7 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
-import CartLength from '../features/cart/CartLength';
 import CartTotal from '../features/cart/CartTotal';
+import CartLength from '../features/cart/CartLength';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -55,7 +55,7 @@ function Header({setIsOpen}) {
                         </>
                         : <li className='borderSquare'><Link className='noLink colorBlack' to="/login">Connexion</Link></li>}
                     </Basket>}
-                <div className='totalDisplay'>
+                <div className='flexDisplay'>
                     <CartLength/>
                     <FontAwesomeIcon icon="fa-solid fa-basket-shopping" className='fs22' onClick={() => setIsOpen(value =>!value)}/>
                     <CartTotal/>

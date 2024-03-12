@@ -1,6 +1,6 @@
+import styled from "styled-components"
 import { useDispatch, useSelector } from "react-redux"
 import { addProduct, deleteProduct, getAllCart } from "./cartSlice"
-import styled from "styled-components"
 import { formatPrice } from "../../utils/common"
 
 const ListElement = styled.li`

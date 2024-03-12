@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from "react-redux"
+import styled from 'styled-components'
 import CartList from "../features/cart/CartList.jsx"
 import CartTotal from "../features/cart/CartTotal.jsx"
-import styled from 'styled-components'
+import { useDispatch, useSelector } from "react-redux"
 import { cartLength, emptyCart } from "../features/cart/cartSlice.js"
 import { Link } from "react-router-dom"
 
@@ -26,7 +26,7 @@ function Aside({isOpen}) {
         isOpen 
         && <AsideComponent>
             <CartList/>
-            <div className="totalDisplay fs22">
+            <div className="flexDisplay fs22">
                 <span>Total:</span>
                 <CartTotal/>
                 {counter !== 0 && <button className="greyButton" onClick={() => dispatch(emptyCart())}>Vider le panier</button>}

@@ -26,8 +26,8 @@ function Article({product}) {
         <ArticleComponent>
             <img height={300} width={300} src="https://placehold.co/300"/>
             <SectionFlexbox>
-                <h2>{product.name}</h2> 
-                <p><span>{formatPrice(product.unity)}</span></p>
+                <h2 className="title2">{product.name}</h2> 
+                <p className="fs22">{formatPrice(product.unity)}</p>
             </SectionFlexbox>
             <CartToggle product={product}/>
         </ArticleComponent>

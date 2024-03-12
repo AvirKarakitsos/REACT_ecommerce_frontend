@@ -1,7 +1,7 @@
+import "../assets/styles/Account.scss"
+import Header from "../component/Header"
 import { useQuery } from "@apollo/client"
 import { USER } from "../graphql/Queries"
-import Header from "../component/Header"
-import "../assets/styles/Account.scss"
 import { formatDate, formatPrice } from "../utils/common"
 import { Link } from "react-router-dom"
 

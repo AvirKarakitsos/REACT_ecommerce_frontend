@@ -1,12 +1,12 @@
-import { Link, useNavigate } from "react-router-dom"
+import styled from "styled-components"
+import Header from "../component/Header"
 import CartList from "../features/cart/CartList"
 import CartTotal from "../features/cart/CartTotal"
+import { Link, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { cartLength, getAllCart } from "../features/cart/cartSlice"
 import { useMutation } from "@apollo/client"
 import { ADD_PRODUCTS } from "../graphql/Mutations"
-import Header from "../component/Header"
-import styled from "styled-components"
 
 const MainContainer = styled.main`
     max-width: 500px;
@@ -52,7 +52,7 @@ function Summary() {
             <Header/>
             <MainContainer>
                 <CartList/>
-                <div className="totalDisplay fs22">
+                <div className="flexDisplay fs22">
                     <span>Total:</span><CartTotal/>
                 </div>
                 {count !== 0 && <button className="blueButton" onClick={addProduct}>Paiement du panier</button>}

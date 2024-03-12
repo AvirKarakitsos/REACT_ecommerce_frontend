@@ -1,12 +1,12 @@
-import { useQuery } from '@apollo/client'
-import { PRODUCTS } from '../graphql/Queries.js'
+import styled from 'styled-components';
 import Header from '../component/Header.jsx';
 import Aside from '../component/Aside.jsx';
 import Article from '../component/Article.jsx';
+import { useQuery } from '@apollo/client'
+import { PRODUCTS } from '../graphql/Queries.js'
 import { Provider } from 'react-redux';
 import { store } from '../app/store.js';
 import { useState } from 'react';
-import styled from 'styled-components';
 
 
 const Grid = styled.div`
