@@ -6,7 +6,7 @@ function CartLength() {
     const counter = useSelector(cartLength)
 
     return (
-        <div>{counter}</div>
+        <span>{counter}</span>
     )
 }
 

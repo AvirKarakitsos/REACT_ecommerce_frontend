@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import CartToggle from "../features/cart/CartToggle"
+import { formatPrice } from "../utils/common"
 
 
 const ArticleComponent = styled.article`
@@ -9,6 +10,7 @@ const ArticleComponent = styled.article`
     display: flex;
     flex-direction: column;
     align-items: center;
+    row-gap: 5px;
     border: 1px solid black;
 `
 
@@ -25,7 +27,7 @@ function Article({product}) {
             <img height={300} width={300} src="https://placehold.co/300"/>
             <SectionFlexbox>
                 <h2>{product.name}</h2> 
-                <p><span>{(product.unity/100).toFixed(2)}€</span></p>
+                <p><span>{formatPrice(product.unity)}</span></p>
             </SectionFlexbox>
             <CartToggle product={product}/>
         </ArticleComponent>

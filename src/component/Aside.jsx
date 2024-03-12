@@ -26,12 +26,12 @@ function Aside({isOpen}) {
         isOpen 
         && <AsideComponent>
             <CartList/>
-            <div>
+            <div className="totalDisplay fs22">
                 <span>Total:</span>
                 <CartTotal/>
-                {counter !== 0 && <button className="toggleButton" onClick={() => dispatch(emptyCart())}>Vider le panier</button>}
+                {counter !== 0 && <button className="greyButton" onClick={() => dispatch(emptyCart())}>Vider le panier</button>}
             </div>
-            {counter !== 0 && <button className="validButton"><Link className="noLink" to="/cart">Valider le panier</Link></button>}
+            {counter !== 0 && <button className="blueButton"><Link className="noLink colorWhite" to="/cart">Valider le panier</Link></button>}
         </AsideComponent>
     )
 }

@@ -1,4 +1,4 @@
-.validButton {
+.blueButton {
     padding: 10px;
     display: block;
     font-size: 17px;
@@ -8,7 +8,7 @@
     border-radius: 5px;
 }
 
-.toggleButton {
+.greyButton {
     margin: 0 3px;
     padding: 4px 7px;
     font-size: 18px;
@@ -16,6 +16,10 @@
     background-color: grey;
     border: none;
     border-radius: 3px;
+}
+
+.colorWhite {
+    color: #fff;
 }
 
 .colorGrey {
@@ -35,10 +39,29 @@
 }
 
 .noLink {
-    color: #fff;
     text-decoration: none;
 }
 
 .noDecoration {
     list-style-type: none;
+}
+
+.totalDisplay {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    font-weight: 700;
+}
+
+.fs22 {
+    font-size: 22px;
+}
+
+.borderSquare {
+    padding: 10px;
+    width: 150px;
+    background-color: #fff;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
 }

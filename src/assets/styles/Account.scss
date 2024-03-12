@@ -1,0 +1,42 @@
+.accountContainer {
+    margin: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .mainContainer {
+        max-width: 500px;
+        width:100%;
+        margin: 0 auto;
+        padding: 50px 0;
+        display: flex;
+        flex-direction: column;
+        row-gap: 50px;
+
+        .subTitle {
+            margin-bottom: 15px;
+        }
+
+        summary {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .orderDate {
+            position: absolute;
+            left: 15px;
+        }
+        
+        .totalPrice {
+            position: absolute;
+            right: 0;
+        }
+
+        li {
+            padding: 3px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

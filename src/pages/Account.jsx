@@ -1,19 +1,10 @@
 import { useQuery } from "@apollo/client"
 import { USER } from "../graphql/Queries"
 import Header from "../component/Header"
-import styled from "styled-components"
+import "../assets/styles/Account.scss"
+import { formatDate, formatPrice } from "../utils/common"
+import { Link } from "react-router-dom"
 
-const MainContainer = styled.main`
-    max-width: 500px;
-    width:100%;
-    margin: 0 auto;
-    padding: 50px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    border 1px solid black;
-`
 
 
 function Account() {
@@ -27,11 +18,6 @@ function Account() {
         },
     })
 
-    const newDate = (timestamp) => {
-        const date = new Date(parseInt(timestamp))
-        return date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear()
-    } 
-
     if (loading) return "Loading...";
 
     if (error) return <Header/>;
@@ -39,26 +25,34 @@ function Account() {
     else return (
         <>
             <Header/>
-            <h1>Mon Compte</h1>
-            <MainContainer>
-                <ul className="noDecoration">
-                    <li>{"Nom: "+data.user.name}</li>
-                    <li>{"Email: "+data.user.email}</li>
-                    <li>{"Adresse: "+data.user.address}</li>
-                </ul>
-                <h2>Historiques des commandes</h2>
-                {data.user.orders.map(order => (
-                    <details key={order._id}>
-                        <summary>{newDate(order.createdAt)+" "+(order.totalPrice/100).toFixed(2)+"€"}</summary>
+            <div className="accountContainer">
+                <h1>Mon Compte</h1>
+                <main className="mainContainer">
+                    <div>
+                        <h2 className="subTitle">Profil</h2>
                         <ul className="noDecoration">
-                            {order.products?.map(item =>(<>
-                                <li key={item._id}>{item.product.name+" "+item.product.unity+" "+item.quantity}</li>
-                                </>
-                            ))}
+                            <li>{"Nom: "+data.user.name}</li>
+                            <li>{"Email: "+data.user.email}</li>
+                            <li>{"Adresse: "+data.user.address}</li>
                         </ul>
-                    </details>)
-                )}
-            </MainContainer>
+                    </div>
+                    <div>
+                        <h2 className="subTitle">Historiques des commandes</h2>
+                        {data.user.orders.map(order => (
+                            <details key={order._id}>
+                                <summary><span className="orderDate">{formatDate(order.createdAt)}</span><span className="totalPrice">{formatPrice(order.totalPrice)}</span></summary>
+                                <ul className="noDecoration">
+                                    {order.products?.map(item =>(<>
+                                        <li key={item._id}><span>{item.product.name}</span><span>{formatPrice(item.product.unity)}</span><span>{item.quantity}</span></li>
+                                        </>
+                                    ))}
+                                </ul>
+                            </details>)
+                        )}
+                    </div>
+                </main>
+                <button className="greyButton"><Link className="noLink colorWhite" to="/">Retour</Link></button>
+            </div>
         </>
     )
 }

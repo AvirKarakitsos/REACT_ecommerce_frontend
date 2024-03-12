@@ -14,7 +14,7 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
-  gap: 20px;
+  gap: 50px 25px;
 `
 
 function Home() {

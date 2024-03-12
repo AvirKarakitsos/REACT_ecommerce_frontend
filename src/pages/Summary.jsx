@@ -11,14 +11,14 @@ import styled from "styled-components"
 const MainContainer = styled.main`
     max-width: 500px;
     width:100%;
-    margin: 0 auto;
-    padding: 50px 0;
+    margin: 100px auto;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     row-gap: 25px;
-    border 1px solid black;
+    border: 1px solid black;
 `
 
 function Summary() {
@@ -52,11 +52,11 @@ function Summary() {
             <Header/>
             <MainContainer>
                 <CartList/>
-                <div>
+                <div className="totalDisplay fs22">
                     <span>Total:</span><CartTotal/>
                 </div>
-                {count !== 0 && <button className="validButton" onClick={addProduct}>Paiement du panier</button>}
-                <button className="toggleButton"><Link className="noLink" to='/'>Retour</Link></button>
+                {count !== 0 && <button className="blueButton" onClick={addProduct}>Paiement du panier</button>}
+                <button className="greyButton"><Link className="noLink colorWhite" to='/'>Retour</Link></button>
             </MainContainer>
         </>
     )

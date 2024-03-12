@@ -82,7 +82,7 @@ function Login() {
                         {showPassword && <input className="showPassword" type="text" name="password" id="password" value={credentials.password} onChange={onChange} autoComplete="off" placeholder="Mot de passe" />}
                     </label>
                     {!isValid.display && <p>{isValid.message}</p>}
-                    <button className="validButton" type="submit">Valider</button>
+                    <button className="blueButton" type="submit">Valider</button>
                 </fieldset>
             </form>
         </div>

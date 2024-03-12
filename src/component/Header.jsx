@@ -6,29 +6,29 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 const HeaderSection = styled.header`
-    height: 50px;
+    height: 75px;
     padding: 0 100px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+`
+
+const Navbar = styled.section`
+    width: 150px;
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
 `
 
-const Basket = styled.section`
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    column-gap: 5px;
-`
-
-const Navbar = styled.ul`
+const Basket = styled.ul`
     position: absolute;
-    top: 30px;
+    top: 48px;
     display: flex;
     flex-direction:column;
     justify-content: center;
     align-items: center;
-    row-gap: 5px;
 `
 
 function Header({setIsOpen}) {
@@ -46,20 +46,21 @@ function Header({setIsOpen}) {
 
     return (
         <HeaderSection>
-            <p>Header Part</p>
-            <Basket>
-                <FontAwesomeIcon icon="fa-solid fa-user" onClick={() => setIsDisplay(value => !value)} className={!!isLogin ? "colorGreen" : "colorRed"}/>
-                {isDisplay && <Navbar className='noDecoration'>
-                    {!!isLogin ?
-                    <><li><Link to="/account">Mon compte</Link></li>
-                        <li onClick={handleLogin}>Déconnexion</li>
-                    </>
-                    : <li><Link to="/login">Connexion</Link></li>}
-                </Navbar>}
-                <CartLength/>
-                <FontAwesomeIcon icon="fa-solid fa-basket-shopping" onClick={() => setIsOpen(value =>!value)}/>
-                <CartTotal/>
-            </Basket>
+            <Navbar>
+                <FontAwesomeIcon icon="fa-solid fa-user" onClick={() => setIsDisplay(value => !value)} className={!!isLogin ? "colorGreen fs22" : "colorRed fs22"}/>
+                    {isDisplay && <Basket className='noDecoration'>
+                        {!!isLogin ?
+                        <><li className='borderSquare'><Link className='noLink colorBlack' to="/account">Mon compte</Link></li>
+                            <li className='borderSquare' onClick={handleLogin}>Déconnexion</li>
+                        </>
+                        : <li className='borderSquare'><Link className='noLink colorBlack' to="/login">Connexion</Link></li>}
+                    </Basket>}
+                <div className='totalDisplay'>
+                    <CartLength/>
+                    <FontAwesomeIcon icon="fa-solid fa-basket-shopping" className='fs22' onClick={() => setIsOpen(value =>!value)}/>
+                    <CartTotal/>
+                </div>
+            </Navbar>
         </HeaderSection>
     )
 }
