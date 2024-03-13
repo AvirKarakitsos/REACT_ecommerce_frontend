@@ -36,12 +36,11 @@ function Header({setIsOpen}) {
     const [isLogin, setIsLogin] = useState(localStorage.getItem("token"))
     const [isDisplay, setIsDisplay] = useState(false)
 
-    const handleLogin = function() {
-        if(!!isLogin) {
-            setIsLogin(localStorage.removeItem("token"))
-            setIsDisplay(false)
-        } 
-        else navigate("/login")
+    const handleLogout = function() {
+        setIsLogin(localStorage.removeItem("token"))
+        setIsDisplay(false)
+        navigate("/")
+
     }
 
     return (
@@ -51,15 +50,15 @@ function Header({setIsOpen}) {
                     {isDisplay && <Basket className='noDecoration'>
                         {!!isLogin ?
                         <><li className='borderSquare'><Link className='noLink colorBlack' to="/account">Mon compte</Link></li>
-                            <li className='borderSquare' onClick={handleLogin}>Déconnexion</li>
+                            <li className='borderSquare' onClick={handleLogout}>Déconnexion</li>
                         </>
                         : <li className='borderSquare'><Link className='noLink colorBlack' to="/login">Connexion</Link></li>}
                     </Basket>}
-                <div className='flexDisplay'>
-                    <CartLength/>
-                    <FontAwesomeIcon icon="fa-solid fa-basket-shopping" className='fs22' onClick={() => setIsOpen(value =>!value)}/>
-                    <CartTotal/>
-                </div>
+                    <div className='flexDisplay'>
+                        <CartLength/>
+                        <FontAwesomeIcon icon="fa-solid fa-basket-shopping" className='fs22' onClick={() => setIsOpen(value =>!value)}/>
+                        <CartTotal/>
+                    </div>
             </Navbar>
         </HeaderSection>
     )

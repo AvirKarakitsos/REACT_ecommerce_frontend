@@ -1,12 +1,8 @@
 import styled from 'styled-components';
-import Header from '../component/Header.jsx';
-import Aside from '../component/Aside.jsx';
 import Article from '../component/Article.jsx';
 import { useQuery } from '@apollo/client'
 import { PRODUCTS } from '../graphql/Queries.js'
-import { Provider } from 'react-redux';
-import { store } from '../app/store.js';
-import { useState } from 'react';
+import Layout from './layouts/Layout.jsx';
 
 
 const Grid = styled.div`
@@ -19,25 +15,19 @@ const Grid = styled.div`
 
 function Home() {
   const {error, loading, data} = useQuery(PRODUCTS)
-  const [isOpen, setIsOpen] = useState(false)
-
-
+ 
   if (loading) return "Loading...";
 
   if (error) return `Error! ${error.message}`;
 
   else return (
-    <>
-    <Provider store={store}>
-      <Header setIsOpen={setIsOpen}/>
-      <Aside isOpen={isOpen}/>
+    <Layout>
       <main>
         <Grid>
           {data.products.map((item) => <Article key={item._id} product={item}/> )}
         </Grid>
       </main>
-    </Provider>
-    </>
+    </Layout>
 )}
 
 export default Home

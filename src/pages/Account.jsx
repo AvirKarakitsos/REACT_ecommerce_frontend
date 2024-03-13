@@ -1,5 +1,6 @@
 import "../assets/styles/Account.scss"
-import Header from "../component/Header"
+import Layout from "./layouts/Layout"
+import Error from "./Error.jsx"
 import { useQuery } from "@apollo/client"
 import { USER } from "../graphql/Queries"
 import { formatDate, formatPrice } from "../utils/common"
@@ -20,11 +21,10 @@ function Account() {
 
     if (loading) return "Loading...";
 
-    if (error) return <Header/>;
+    if (error) return <Error/>;
   
     else return (
-        <>
-            <Header/>
+        <Layout>
             <div className="accountContainer">
                 <h1>Mon Compte</h1>
                 <main className="mainContainer">
@@ -42,9 +42,12 @@ function Account() {
                             <details key={order._id}>
                                 <summary><span className="orderDate">{formatDate(order.createdAt)}</span><span className="totalPrice">{formatPrice(order.totalPrice)}</span></summary>
                                 <ul className="noDecoration">
-                                    {order.products?.map(item =>(<>
-                                        <li key={item._id}><span>{item.product.name}</span><span>{formatPrice(item.product.unity)}</span><span>{item.quantity}</span></li>
-                                        </>
+                                    {order.products?.map(item =>(
+                                       <li key={item._id}>
+                                            <span>{item.product.name}</span>
+                                            <span>{formatPrice(item.product.unity)}</span>
+                                            <span>{item.quantity}</span>
+                                        </li>
                                     ))}
                                 </ul>
                             </details>)
@@ -53,7 +56,7 @@ function Account() {
                 </main>
                 <button className="greyButton"><Link className="noLink colorWhite" to="/">Retour</Link></button>
             </div>
-        </>
+        </Layout>
     )
 }
 

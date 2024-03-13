@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import Header from "../component/Header"
+import Layout from "./layouts/Layout"
 import CartList from "../features/cart/CartList"
 import CartTotal from "../features/cart/CartTotal"
 import { Link, useNavigate } from "react-router-dom"
@@ -48,8 +48,7 @@ function Summary() {
     )
 
     return (
-        <>
-            <Header/>
+        <Layout>
             <MainContainer>
                 <CartList/>
                 <div className="flexDisplay fs22">
@@ -58,7 +57,7 @@ function Summary() {
                 {count !== 0 && <button className="blueButton" onClick={addProduct}>Paiement du panier</button>}
                 <button className="greyButton"><Link className="noLink colorWhite" to='/'>Retour</Link></button>
             </MainContainer>
-        </>
+        </Layout>
     )
 }
 

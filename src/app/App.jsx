@@ -12,9 +12,10 @@ import { faBasketShopping, faEye, faUser } from '@fortawesome/free-solid-svg-ico
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from '../pages/Home.jsx';
 import Summary from '../pages/Summary.jsx';
-import Error from '../pages/Error.jsx';
 import Login from '../pages/Login.jsx';
 import Account from '../pages/Account.jsx';
+import { SERVER_URL } from '../utils/constants.js';
+import Message from '../component/Message.jsx';
 
 library.add(faBasketShopping, faEye, faUser);
 
@@ -27,7 +28,7 @@ const errorLink = onError(({graphQLErrors}) => {
 
 const link = from([
   errorLink,
-  new HttpLink({ uri: "http://localhost:3000/graphql"})
+  new HttpLink({ uri: `${SERVER_URL}/graphql`})
 ])
 
 const client = new ApolloClient({
@@ -53,8 +54,16 @@ const router = createBrowserRouter([
     element: <Account/>
   },
   {
+    path:'/success',
+    element: <Message message="Merci de votre achat"/>
+  },
+  {
+    path:'/errorpayment',
+    element: <Message message="Erreur lors du paiement"/>
+  },
+  {
     path: '*',
-    element: <Error/>
+    element: <Message message="Erreur 404"/>
   }
 ])
 
