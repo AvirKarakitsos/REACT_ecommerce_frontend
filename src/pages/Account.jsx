@@ -1,6 +1,6 @@
 import "../assets/styles/Account.scss"
 import Layout from "./layouts/Layout"
-import Error from "./Error.jsx"
+import Message from "../component/Message"
 import { useQuery } from "@apollo/client"
 import { USER } from "../graphql/Queries"
 import { formatDate, formatPrice } from "../utils/common"
@@ -21,7 +21,7 @@ function Account() {
 
     if (loading) return "Loading...";
 
-    if (error) return <Error/>;
+    if (error) return <Message message="Erreur"/>;
   
     else return (
         <Layout>
