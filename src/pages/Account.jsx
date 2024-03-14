@@ -7,21 +7,25 @@ import { formatDate, formatPrice } from "../utils/common"
 import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { getStatus, getToken } from "../features/user/userSlice"
-
+import { useEffect } from "react"
 
 
 function Account() {
-    const token = useSelector(getToken)
-    const user = useSelector(getStatus)
-
-    const {data, loading, error} = useQuery(USER,{
+    let token = useSelector(getToken)
+    let user = useSelector(getStatus)
+    
+    const {data, loading, error, refetch} = useQuery(USER,{
         context: {
             headers: {
-              Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${token}`,
             }
         },
     })
 
+    useEffect(()=> {
+        refetch()
+    } ,[refetch])
+    
     if (loading) return "Loading...";
 
     if (error) return <Message message="Erreur"/>;
@@ -43,9 +47,14 @@ function Account() {
                     </div>
                     <div>
                         <h2 className="subTitle">Historiques des commandes</h2>
-                        {data.user.orders.map(order => (
-                            <details key={order._id}>
-                                <summary><span className="orderDate">{formatDate(order.createdAt)}</span><span className="totalPrice">{formatPrice(order.totalPrice)}</span></summary>
+                        {!data.user.orders.length
+                            ? <p>Aucune commande</p>
+                            : data.user.orders?.map(order => (
+                                <details key={order._id}>
+                                <summary>
+                                    <span className="orderDate">{formatDate(order.createdAt)}</span>
+                                    <span className="totalPrice">{formatPrice(order.totalPrice)}</span>
+                                </summary>
                                 <ul className="noDecoration">
                                     {order.products?.map(item =>(
                                        <li key={item._id}>

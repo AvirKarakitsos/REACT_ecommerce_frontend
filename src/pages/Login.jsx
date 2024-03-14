@@ -54,7 +54,10 @@ function Login() {
                         display: true,
                         message: ""
                     })
-                    dispatch(login(result.data.loginUser?.token))
+                    dispatch(login({
+                        isConnected: true,
+                        token: result.data.loginUser?.token
+                    }))
                     setCrendentials({
                         email: "",
                         password: ""
@@ -74,7 +77,7 @@ function Login() {
                 <fieldset>
                     <legend>Se connecter</legend>
                     <label htmlFor="email">
-                        <input type="email" name="email" id="email" value={credentials.email} onChange={onChange} autoComplete="off" placeholder="Email"/>
+                        <input type="email" name="email" id="email" value={credentials.email} onChange={onChange} placeholder="Email"/>
                     </label>
                     <label htmlFor="password" className="password">
                         <input type="password" name="password" id="password" value={credentials.password} onChange={onChange} autoComplete="off" placeholder="Mot de passe" />

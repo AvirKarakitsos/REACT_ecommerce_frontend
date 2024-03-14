@@ -42,7 +42,10 @@ function Header({setIsOpen}) {
     const handleLogout = function() {
         setIsDisplay(false)
         navigate("/")
-        dispatch(logout())
+        dispatch(logout({
+            isConnected: false,
+            token: ""
+        }))
     }
 
     return (
