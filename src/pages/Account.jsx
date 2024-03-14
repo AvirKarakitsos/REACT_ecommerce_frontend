@@ -5,11 +5,14 @@ import { useQuery } from "@apollo/client"
 import { USER } from "../graphql/Queries"
 import { formatDate, formatPrice } from "../utils/common"
 import { Link } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { getStatus, getToken } from "../features/user/userSlice"
 
 
 
 function Account() {
-    const token = localStorage.getItem("token") ?? ""
+    const token = useSelector(getToken)
+    const user = useSelector(getStatus)
 
     const {data, loading, error} = useQuery(USER,{
         context: {
@@ -22,6 +25,8 @@ function Account() {
     if (loading) return "Loading...";
 
     if (error) return <Message message="Erreur"/>;
+
+    if(!user) return <Message message="Vous n'êtes pas connecté"/>;
   
     else return (
         <Layout>

@@ -4,6 +4,8 @@ import CartLength from '../features/cart/CartLength';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getStatus, logout } from '../features/user/userSlice';
 
 const HeaderSection = styled.header`
     height: 75px;
@@ -33,26 +35,28 @@ const Basket = styled.ul`
 
 function Header({setIsOpen}) {
     const navigate = useNavigate()
-    const [isLogin, setIsLogin] = useState(localStorage.getItem("token"))
     const [isDisplay, setIsDisplay] = useState(false)
+    const user = useSelector(getStatus)
+    const dispatch = useDispatch()
 
     const handleLogout = function() {
-        setIsLogin(localStorage.removeItem("token"))
         setIsDisplay(false)
         navigate("/")
-
+        dispatch(logout())
     }
 
     return (
         <HeaderSection>
             <Navbar>
-                <FontAwesomeIcon icon="fa-solid fa-user" onClick={() => setIsDisplay(value => !value)} className={!!isLogin ? "colorGreen fs22" : "colorRed fs22"}/>
+                <FontAwesomeIcon icon="fa-solid fa-user" onClick={() => setIsDisplay(value => !value)} className={ user ? "colorGreen fs22" : "colorRed fs22"}/>
                     {isDisplay && <Basket className='noDecoration'>
-                        {!!isLogin ?
-                        <><li className='borderSquare'><Link className='noLink colorBlack' to="/account">Mon compte</Link></li>
-                            <li className='borderSquare' onClick={handleLogout}>Déconnexion</li>
-                        </>
-                        : <li className='borderSquare'><Link className='noLink colorBlack' to="/login">Connexion</Link></li>}
+                        { user 
+                            ? <>
+                            
+                                <li className='borderSquare'><Link className='noLink colorBlack' to="/account">Mon compte</Link></li>
+                                <li className='borderSquare' onClick={handleLogout}>Déconnexion</li>
+                            </>
+                            : <li className='borderSquare'><Link className='noLink colorBlack' to="/login">Connexion</Link></li>}
                     </Basket>}
                     <div className='flexDisplay'>
                         <CartLength/>

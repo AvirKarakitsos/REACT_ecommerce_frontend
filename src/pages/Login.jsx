@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import { LOGIN } from "../graphql/Mutations.js"
 import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { login } from "../features/user/userSlice.js"
 
 function Login() {
     const [credentials, setCrendentials] = useState({
@@ -17,6 +19,7 @@ function Login() {
     const [showPassword, setShowPassword] = useState(false)
     const [loginUser] = useMutation(LOGIN)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     
     const onChange = function(e) {
         e.preventDefault()
@@ -51,7 +54,7 @@ function Login() {
                         display: true,
                         message: ""
                     })
-                    localStorage.setItem('token', result.data.loginUser?.token);
+                    dispatch(login(result.data.loginUser?.token))
                     setCrendentials({
                         email: "",
                         password: ""
