@@ -1,8 +1,20 @@
-# React + Vite
+## Description
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Site maquette d'un e-commerce codé avec React JS. Utilisation des librairies react-redux et reduxjs/toolkit afin de gérer le panier des achats du client et les informations de ce dernier. Mode de paiement avec l'API Stripe.  
+J'ai également codé une API GraphQL qui fournit les informations sur les produits vendu sur le site d'e-commerce; code disponible ici : https://github.com/AvirKarakitsos/FASTIFY_ecommerce_backend
 
-Currently, two official plugins are available:
+**Tags**: *React, redux/toolkit, Stripe*
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<p align="center">
+  <img src="./public/assets/shop_website_short.png" alt="shop image">
+</p>
+
+## Installation
+
+### `npm install`
+
+Installer toutes les librairies
+
+### `npm run dev`
+
+Pour lancer l'application
